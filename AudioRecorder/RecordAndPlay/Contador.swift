@@ -19,4 +19,7 @@ class Counter {
     func reset() {
         count = 0
     }
+    func set(amount: Int){
+        count = amount
+    }
 }

@@ -14,11 +14,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pzF-iX-r8X">
-                                <rect key="frame" x="200" y="100" width="200" height="50"/>
+                                <rect key="frame" x="88" y="100" width="200" height="50"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="8IQ-cA-Xpz"/>
@@ -33,7 +33,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AxN-N3-45m">
-                                <rect key="frame" x="200" y="186" width="200" height="50"/>
+                                <rect key="frame" x="88" y="186" width="200" height="50"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="egh-nj-OJX"/>
@@ -47,6 +47,28 @@
                                     <action selector="doPlay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yhT-3Z-UwW"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9f5-re-gTE">
+                                <rect key="frame" x="69" y="320" width="239" height="29"/>
+                                <segments>
+                                    <segment title="Photo"/>
+                                    <segment title="Rec"/>
+                                    <segment title="Stop"/>
+                                    <segment title="Random"/>
+                                </segments>
+                                <connections>
+                                    <action selector="indexChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Pa9-vz-ydx"/>
+                                </connections>
+                            </segmentedControl>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Photo" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FSJ-Qs-nRj">
+                                <rect key="frame" x="139" y="265" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="haR-hF-ZW3">
+                                <rect key="frame" x="140" y="41" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -56,14 +78,18 @@
                             <constraint firstItem="pzF-iX-r8X" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uSD-ga-kuH"/>
                         </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="btnPlay" destination="AxN-N3-45m" id="0Rc-Vo-5hh"/>
                         <outlet property="btnRecord" destination="pzF-iX-r8X" id="6Eh-7x-AM0"/>
+                        <outlet property="btnWord" destination="9f5-re-gTE" id="QGS-Qt-G01"/>
+                        <outlet property="counter" destination="haR-hF-ZW3" id="OzB-3q-DyK"/>
+                        <outlet property="textLabel" destination="FSJ-Qs-nRj" id="lse-Vf-Aal"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="418"/>
+            <point key="canvasLocation" x="304.5" y="417.5"/>
         </scene>
     </scenes>
 </document>
