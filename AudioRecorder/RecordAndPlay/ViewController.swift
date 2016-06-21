@@ -13,6 +13,7 @@ import AVFoundation
 class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayerDelegate, UITextFieldDelegate {
     
     
+    @IBOutlet weak var Basura: UILabel!
     @IBOutlet weak var counter: UITextField!
     @IBOutlet weak var textLabel: UITextField!
     @IBOutlet weak var btnWord: UISegmentedControl!
@@ -23,6 +24,8 @@ class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayer
     var contador = Counter()
     var word = "Photo"
     var value = "1"
+    var variable : [Float] = []
+    
     
     @IBAction func indexChanged(sender: UISegmentedControl) {
         switch btnWord.selectedSegmentIndex
@@ -69,7 +72,6 @@ class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayer
         let soundURL = documentDirectory.URLByAppendingPathComponent(filename)
         contador.increment()
         counter.text = String(contador.count)
-        print(soundURL)
         return soundURL
     }
     
@@ -114,8 +116,15 @@ class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayer
             self.audioPlayer.prepareToPlay()
             self.audioPlayer.delegate = self
             self.audioPlayer.play()
+            variable = loadAudioSignal(audioRecorder.url).signal
+            var suma :Float = 0
+            for k in variable{
+                suma = suma + k
+                Basura.text = String(suma)
+            }
         }
     }
+    
     
     //MARK:- AudioRecordDelegate
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
@@ -126,6 +135,16 @@ class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayer
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
         print(flag)
     }
+    
+    func loadAudioSignal(audioURL: NSURL) -> (signal: [Float], rate: Double, frameCount: Int) {
+        let file = try! AVAudioFile(forReading: audioURL)
+        let format = AVAudioFormat(commonFormat: .PCMFormatFloat32, sampleRate: file.fileFormat.sampleRate, channels: file.fileFormat.channelCount, interleaved: false)
+        let buf = AVAudioPCMBuffer(PCMFormat: format, frameCapacity: UInt32(file.length))
+        try! file.readIntoBuffer(buf) // You probably want better error handling
+        let floatArray = Array(UnsafeBufferPointer(start: buf.floatChannelData[0], count:Int(buf.frameLength)))
+        return (signal: floatArray, rate: file.fileFormat.sampleRate, frameCount: Int(file.length))
+    }
+    
     func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer, error: NSError?){
         print(error.debugDescription)
     }

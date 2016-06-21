@@ -13,6 +13,7 @@
 		68F5DE1F1CCF40630084BC0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68F5DE1E1CCF40630084BC0F /* Assets.xcassets */; };
 		68F5DE221CCF40630084BC0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68F5DE201CCF40630084BC0F /* LaunchScreen.storyboard */; };
 		68F5DE2D1CCF40630084BC0F /* RecordAndPlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F5DE2C1CCF40630084BC0F /* RecordAndPlayTests.swift */; };
+		6E611C651D14A93F00D0D29B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E611C641D14A93F00D0D29B /* AVFoundation.framework */; };
 		6E8EB5901D13577300CC8361 /* Contador.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8EB58F1D13577300CC8361 /* Contador.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		68F5DE281CCF40630084BC0F /* RecordAndPlayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecordAndPlayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		68F5DE2C1CCF40630084BC0F /* RecordAndPlayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAndPlayTests.swift; sourceTree = "<group>"; };
 		68F5DE2E1CCF40630084BC0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E611C641D14A93F00D0D29B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6E8EB58F1D13577300CC8361 /* Contador.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contador.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -45,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E611C651D14A93F00D0D29B /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +64,7 @@
 		68F5DE0B1CCF40630084BC0F = {
 			isa = PBXGroup;
 			children = (
+				6E611C641D14A93F00D0D29B /* AVFoundation.framework */,
 				68F5DE161CCF40630084BC0F /* RecordAndPlay */,
 				68F5DE2B1CCF40630084BC0F /* RecordAndPlayTests */,
 				68F5DE151CCF40630084BC0F /* Products */,
