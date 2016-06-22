@@ -22,6 +22,7 @@ class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayer
     var audioRecorder:AVAudioRecorder!
     var audioPlayer : AVAudioPlayer!
     var contador = Counter()
+    var mel = Mel()
     var word = "Photo"
     var value = "1"
     var variable : [Float] = []
@@ -117,11 +118,9 @@ class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayer
             self.audioPlayer.delegate = self
             self.audioPlayer.play()
             variable = loadAudioSignal(audioRecorder.url).signal
-            var suma :Float = 0
-            for k in variable{
-                suma = suma + k
-                Basura.text = String(suma)
-            }
+            mel.setSignal(variable)
+            mel.overlapping()
+            Basura.text = String(variable.maxElement())
         }
     }
     
