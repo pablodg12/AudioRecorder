@@ -120,6 +120,8 @@ class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayer
             variable = loadAudioSignal(audioRecorder.url).signal
             mel.setSignal(variable)
             mel.overlapping()
+            mel.PreFourier()
+            mel.performeFFt()
             Basura.text = String(variable.maxElement())
         }
     }

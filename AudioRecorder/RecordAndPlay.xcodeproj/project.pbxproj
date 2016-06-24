@@ -16,6 +16,7 @@
 		6E35E3BB1D18E52A0031271F /* Mel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E35E3BA1D18E52A0031271F /* Mel.swift */; };
 		6E611C651D14A93F00D0D29B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E611C641D14A93F00D0D29B /* AVFoundation.framework */; };
 		6E8EB5901D13577300CC8361 /* Contador.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8EB58F1D13577300CC8361 /* Contador.swift */; };
+		6E9979AD1D1CFA0500BFFE1E /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9979AC1D1CFA0500BFFE1E /* Accelerate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		6E35E3BA1D18E52A0031271F /* Mel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mel.swift; sourceTree = "<group>"; };
 		6E611C641D14A93F00D0D29B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6E8EB58F1D13577300CC8361 /* Contador.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contador.swift; sourceTree = "<group>"; };
+		6E9979AC1D1CFA0500BFFE1E /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E9979AD1D1CFA0500BFFE1E /* Accelerate.framework in Frameworks */,
 				6E611C651D14A93F00D0D29B /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,6 +69,7 @@
 		68F5DE0B1CCF40630084BC0F = {
 			isa = PBXGroup;
 			children = (
+				6E9979AC1D1CFA0500BFFE1E /* Accelerate.framework */,
 				6E611C641D14A93F00D0D29B /* AVFoundation.framework */,
 				68F5DE161CCF40630084BC0F /* RecordAndPlay */,
 				68F5DE2B1CCF40630084BC0F /* RecordAndPlayTests */,

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Accelerate
 
 
 class Mel{
@@ -15,12 +16,15 @@ class Mel{
     var mean : [Float] = []
     var desviation: [Float] = []
     var mirror : [Float] = []
+    var dummy : [Float] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     var sample : Int = 0
     var rate: Int = 88200
     var samRate: Int = 0
     var sizeR: Int = 0
     var iteration: Int = 0
     var NumColumns: Int = 0
+    let fft_weights: FFTSetup = vDSP_create_fftsetup(vDSP_Length(log2(Float(128))), FFTRadix(kFFTRadix2))
+    
 
     
 // Manejo de arrays
@@ -95,6 +99,7 @@ class Mel{
         mirror = []
     }
     
+// Funcion que corta la onda en frames, usando 50% de overlapping.
     func overlapping(){
         samRate = (sample/rate)*1000
         sizeR = samRate/20
@@ -125,9 +130,34 @@ class Mel{
                 }
             }
         }
-        
     }
-
+    // Prepara la Data para la transformada de fourier
+    func PreFourier(){
+        for k in 0...NumColumns{
+            matrix[k] = matrix[k] + dummy
+        }
+    }
+    
+    // Funcion para realizar la transformada de fourier, obteniendo la energia
+    func fft(var inputArray:[Float]) -> [Float] {
+        var fftMagnitudes = [Float](count:inputArray.count, repeatedValue:0.0)
+        var zeroArray = [Float](count:inputArray.count, repeatedValue:0.0)
+        var splitComplexInput = DSPSplitComplex(realp: &inputArray, imagp: &zeroArray)
+        
+        vDSP_fft_zip(fft_weights, &splitComplexInput, 1, vDSP_Length(log2(CFloat(inputArray.count))), FFTDirection(FFT_FORWARD));
+        
+        vDSP_zvmags(&splitComplexInput, 1, &fftMagnitudes, 1, vDSP_Length(inputArray.count));
+        
+        return fftMagnitudes
+    }
+    
+    func performeFFt(){
+        for i in 0...NumColumns{
+            matrix[i] = fft(matrix[i])
+        }
+    }
+    
+    
     
     
     
