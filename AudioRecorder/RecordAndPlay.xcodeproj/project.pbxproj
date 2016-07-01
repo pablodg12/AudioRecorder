@@ -19,6 +19,8 @@
 		6E611C651D14A93F00D0D29B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E611C641D14A93F00D0D29B /* AVFoundation.framework */; };
 		6E8EB5901D13577300CC8361 /* Contador.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8EB58F1D13577300CC8361 /* Contador.swift */; };
 		6E9979AD1D1CFA0500BFFE1E /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9979AC1D1CFA0500BFFE1E /* Accelerate.framework */; };
+		6EF862D71D26D4650002AB9D /* weigtha.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6EF862D61D26D4650002AB9D /* weigtha.txt */; };
+		6EF862D91D26D58F0002AB9D /* weigthb.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6EF862D81D26D58F0002AB9D /* weigthb.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		6E611C641D14A93F00D0D29B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6E8EB58F1D13577300CC8361 /* Contador.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contador.swift; sourceTree = "<group>"; };
 		6E9979AC1D1CFA0500BFFE1E /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		6EF862D61D26D4650002AB9D /* weigtha.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = weigtha.txt; path = ../../../../../weigtha.txt; sourceTree = "<group>"; };
+		6EF862D81D26D58F0002AB9D /* weigthb.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = weigthb.txt; path = ../../../../../weigthb.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,8 @@
 			isa = PBXGroup;
 			children = (
 				0E1A8C3C1D26CB9500A04C99 /* filter.txt */,
+				6EF862D61D26D4650002AB9D /* weigtha.txt */,
+				6EF862D81D26D58F0002AB9D /* weigthb.txt */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -218,6 +224,8 @@
 				68F5DE1F1CCF40630084BC0F /* Assets.xcassets in Resources */,
 				0E1A8C3D1D26CB9500A04C99 /* filter.txt in Resources */,
 				68F5DE1D1CCF40630084BC0F /* Main.storyboard in Resources */,
+				6EF862D71D26D4650002AB9D /* weigtha.txt in Resources */,
+				6EF862D91D26D58F0002AB9D /* weigthb.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

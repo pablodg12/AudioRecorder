@@ -57,6 +57,8 @@ class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayer
     override func viewDidLoad() {
         super.viewDidLoad()
         mel.fillMatrix("filter.txt")
+        mel.fillMatrix("weigtha.txt")
+        mel.fillMatrix("weigthb.txt")
         self.btnPlay.enabled = false
         self.counter.delegate = self;
         self.textLabel.delegate = self;

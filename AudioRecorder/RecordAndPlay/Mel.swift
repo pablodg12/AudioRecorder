@@ -13,7 +13,8 @@ import Accelerate
 class Mel{
     var matrix = Array<Array<Float>>()
     var matrixFilter = Array(count:26, repeatedValue:Array(count:64, repeatedValue:Float()))
-    var matrixPasos = Array(count:26, repeatedValue:Array(count:64, repeatedValue:Float()))
+    var matrixA = Array(count:101, repeatedValue:Array(count:14, repeatedValue:Float()))
+    var matrixB = Array(count:101, repeatedValue:Array(count:4, repeatedValue:Float()))
     var signal : [Float] = []
     var mean : [Float] = []
     var desviation: [Float] = []
@@ -65,10 +66,12 @@ class Mel{
             mirror[k] = array1[k] - escalar
         }
     }
-    func eDivision(array1:[Float], escalar: Float){// Division vector-escalar
-        for k in 0...sample{
-            mirror[k] = array1[k] / escalar
+    func eDivision(array1:[Float], escalar: Float)-> [Float]{// Division vector-escalar
+        var aux: [Float] = []
+        for k in 0...127{
+            aux.append(array1[k] / escalar)
         }
+        return aux
     }
     func length(){ // Tamaño de la señal
         for _ in signal{
@@ -155,9 +158,10 @@ class Mel{
     
     func performeFFt(){
         for i in 0...NumColumns{
-            matrix[i] = fft(matrix[i])
+            matrix[i] = eDivision(fft(matrix[i]),escalar: 128.0)
         }
     }
+    
     
     func fillMatrix(file: String) {
         var lineArr: [String]
@@ -189,9 +193,11 @@ class Mel{
                 }
                 switch fileName{
                 case "pasos":
-                    matrixPasos = inputArr
+                    matrixA = inputArr
                 case "filter":
                     matrixFilter = inputArr
+                case "weigthb":
+                    matrixB = inputArr
                 default:
                     break;
                 }
