@@ -12,8 +12,9 @@ import Accelerate
 
 class Mel{
     var matrix = Array<Array<Float>>()
+    var energy = Array(count:4410, repeatedValue:Array(count:64, repeatedValue:Float()))
     var matrixFilter = Array(count:26, repeatedValue:Array(count:64, repeatedValue:Float()))
-    var matrixA = Array(count:101, repeatedValue:Array(count:14, repeatedValue:Float()))
+    var matrixA = Array(count:101, repeatedValue:Array(count:27, repeatedValue:Float()))
     var matrixB = Array(count:101, repeatedValue:Array(count:4, repeatedValue:Float()))
     var signal : [Float] = []
     var mean : [Float] = []
@@ -27,6 +28,8 @@ class Mel{
     var iteration: Int = 0
     var NumColumns: Int = 0
     let fft_weights: FFTSetup = vDSP_create_fftsetup(vDSP_Length(log2(Float(128))), FFTRadix(kFFTRadix2))
+    var result = Array(count:64,repeatedValue:Float(0))
+    var cosa = Array(count: 26, repeatedValue:Float())
     
 
     
@@ -158,19 +161,19 @@ class Mel{
     
     func performeFFt(){
         for i in 0...NumColumns{
-            matrix[i] = eDivision(fft(matrix[i]),escalar: 128.0)
+            energy[i][0...63] = eDivision(fft(matrix[i]),escalar: 128.0)[0...63]
         }
     }
     
     
-    func fillMatrix(file: String) {
+    func fillMatrix(file: String, col: Int, row: Int) {
         var lineArr: [String]
         var columnNumber: Int = 0
         var lineNumber: Int = 0
         var fileArr: [String] = file.componentsSeparatedByString(".")
         var fileName: String = fileArr[0]
         var fileExtension: String = fileArr[1]
-        var inputArr = Array(count:26, repeatedValue:Array(count:64, repeatedValue:Float()))
+        var inputArr = Array(count:row, repeatedValue:Array(count:col, repeatedValue:Float()))
         // Encontrar el archivo
         if let path = NSBundle.mainBundle().pathForResource(fileName, ofType:fileExtension) {
             // use path
@@ -192,7 +195,7 @@ class Mel{
                     columnNumber += 1
                 }
                 switch fileName{
-                case "pasos":
+                case "weigtha":
                     matrixA = inputArr
                 case "filter":
                     matrixFilter = inputArr
@@ -206,6 +209,50 @@ class Mel{
         }
     }
     
+    func vecArrMult(arrM1: [Float], arrM2: [Float]) -> [Float]{
+        var arrRes = Array(count: arrM1.count, repeatedValue:Float())
+        var counter : Int = 0
+        for _ in 1...arrM1.count{
+            arrRes[counter] = arrM1[counter] * arrM2[counter]
+            counter += 1
+        }
+        return arrRes
+    }
+    
+    func vecMatrixMult(tempMatrix: [[Float]], tempVec: [Float]){
+        var matrixRes = Array(count:tempMatrix.count, repeatedValue:Array(count:tempVec.count, repeatedValue:Float()))
+        var counter: Int = 0
+        for _ in 1...tempMatrix.count{
+            matrixRes[counter] = vecArrMult(tempMatrix[counter], arrM2: tempVec)
+            counter += 1
+        }
+        cosa = sumMatrixColumn(matrixRes)
+    }
+    
+    func sumMatrixColumn(inMatrix: [[Float]]) -> [Float]{
+        var sumArr = Array(count: inMatrix.count, repeatedValue:Float())
+        var counter: Int
+        counter = 0
+        for linea in inMatrix{
+            for element in linea{
+                sumArr[counter] += element
+            }
+            counter += 1
+        }
+        return sumArr
+    }
+    
+    
+    
+    func suma(){
+        for k in 0...(64-1){
+            var suma:Float = 0.0
+            for m in 0...(4410-1){
+                suma = suma + energy[m][k]
+            }
+            result[k] = suma
+        }
+    }
     
     
     

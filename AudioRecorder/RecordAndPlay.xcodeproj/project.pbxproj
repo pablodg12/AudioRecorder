@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0E1A8C3A1D26CB3600A04C99 /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1A8C391D26CB3600A04C99 /* StreamReader.swift */; };
 		0E1A8C3D1D26CB9500A04C99 /* filter.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0E1A8C3C1D26CB9500A04C99 /* filter.txt */; };
+		0ED7850C1D26DB47007AE42F /* weigtha.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0ED7850B1D26DB47007AE42F /* weigtha.txt */; };
+		0ED7850D1D26DB47007AE42F /* weigtha.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0ED7850B1D26DB47007AE42F /* weigtha.txt */; };
+		0ED7850F1D26DB56007AE42F /* weigthb.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0ED7850E1D26DB56007AE42F /* weigthb.txt */; };
+		0ED785101D26DB56007AE42F /* weigthb.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0ED7850E1D26DB56007AE42F /* weigthb.txt */; };
 		68F5DE181CCF40630084BC0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F5DE171CCF40630084BC0F /* AppDelegate.swift */; };
 		68F5DE1A1CCF40630084BC0F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F5DE191CCF40630084BC0F /* ViewController.swift */; };
 		68F5DE1D1CCF40630084BC0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68F5DE1B1CCF40630084BC0F /* Main.storyboard */; };
@@ -19,8 +23,6 @@
 		6E611C651D14A93F00D0D29B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E611C641D14A93F00D0D29B /* AVFoundation.framework */; };
 		6E8EB5901D13577300CC8361 /* Contador.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8EB58F1D13577300CC8361 /* Contador.swift */; };
 		6E9979AD1D1CFA0500BFFE1E /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9979AC1D1CFA0500BFFE1E /* Accelerate.framework */; };
-		6EF862D71D26D4650002AB9D /* weigtha.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6EF862D61D26D4650002AB9D /* weigtha.txt */; };
-		6EF862D91D26D58F0002AB9D /* weigthb.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6EF862D81D26D58F0002AB9D /* weigthb.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 /* Begin PBXFileReference section */
 		0E1A8C391D26CB3600A04C99 /* StreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
 		0E1A8C3C1D26CB9500A04C99 /* filter.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filter.txt; sourceTree = "<group>"; };
+		0ED7850B1D26DB47007AE42F /* weigtha.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = weigtha.txt; sourceTree = "<group>"; };
+		0ED7850E1D26DB56007AE42F /* weigthb.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = weigthb.txt; sourceTree = "<group>"; };
 		68F5DE141CCF40630084BC0F /* RecordAndPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecordAndPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68F5DE171CCF40630084BC0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68F5DE191CCF40630084BC0F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,8 +54,6 @@
 		6E611C641D14A93F00D0D29B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6E8EB58F1D13577300CC8361 /* Contador.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contador.swift; sourceTree = "<group>"; };
 		6E9979AC1D1CFA0500BFFE1E /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		6EF862D61D26D4650002AB9D /* weigtha.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = weigtha.txt; path = ../../../../../weigtha.txt; sourceTree = "<group>"; };
-		6EF862D81D26D58F0002AB9D /* weigthb.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = weigthb.txt; path = ../../../../../weigthb.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				0E1A8C3C1D26CB9500A04C99 /* filter.txt */,
-				6EF862D61D26D4650002AB9D /* weigtha.txt */,
-				6EF862D81D26D58F0002AB9D /* weigthb.txt */,
+				0ED7850B1D26DB47007AE42F /* weigtha.txt */,
+				0ED7850E1D26DB56007AE42F /* weigthb.txt */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -220,12 +222,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ED7850C1D26DB47007AE42F /* weigtha.txt in Resources */,
 				68F5DE221CCF40630084BC0F /* LaunchScreen.storyboard in Resources */,
 				68F5DE1F1CCF40630084BC0F /* Assets.xcassets in Resources */,
+				0ED7850F1D26DB56007AE42F /* weigthb.txt in Resources */,
 				0E1A8C3D1D26CB9500A04C99 /* filter.txt in Resources */,
 				68F5DE1D1CCF40630084BC0F /* Main.storyboard in Resources */,
-				6EF862D71D26D4650002AB9D /* weigtha.txt in Resources */,
-				6EF862D91D26D58F0002AB9D /* weigthb.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +235,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ED7850D1D26DB47007AE42F /* weigtha.txt in Resources */,
+				0ED785101D26DB56007AE42F /* weigthb.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -51,14 +51,15 @@ class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayer
     let isRecorderAudioFile = false
     let recordSettings = [AVSampleRateKey : NSNumber(float: Float(88200.0)),
         AVNumberOfChannelsKey : NSNumber(int: 1),
+        
         AVEncoderAudioQualityKey : NSNumber(int: Int32(AVAudioQuality.Medium.rawValue))]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mel.fillMatrix("filter.txt")
-        mel.fillMatrix("weigtha.txt")
-        mel.fillMatrix("weigthb.txt")
+        mel.fillMatrix("filter.txt",col: 64,row: 26)
+        mel.fillMatrix("weigtha.txt",col: 27,row: 101)
+        mel.fillMatrix("weigthb.txt",col: 4,row: 101)
         self.btnPlay.enabled = false
         self.counter.delegate = self;
         self.textLabel.delegate = self;
@@ -124,6 +125,8 @@ class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayer
             mel.overlapping()
             mel.PreFourier()
             mel.performeFFt()
+            mel.suma()
+            mel.vecMatrixMult(mel.matrixFilter, tempVec: mel.result)
             Basura.text = String(variable.maxElement())
         }
     }
