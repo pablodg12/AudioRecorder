@@ -237,6 +237,7 @@ class Mel{
             for element in linea{
                 sumArr[counter] += element
             }
+            sumArr[counter] = log10(sumArr[counter])
             counter += 1
         }
         return sumArr
@@ -252,6 +253,10 @@ class Mel{
             }
             result[k] = suma
         }
+    }
+    
+    func log10(val: Float) -> Float {
+        return log(val)/log(10.0)
     }
     
     
