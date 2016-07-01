@@ -12,6 +12,8 @@ import Accelerate
 
 class Mel{
     var matrix = Array<Array<Float>>()
+    var matrixFilter = Array(count:26, repeatedValue:Array(count:64, repeatedValue:Float()))
+    var matrixPasos = Array(count:26, repeatedValue:Array(count:64, repeatedValue:Float()))
     var signal : [Float] = []
     var mean : [Float] = []
     var desviation: [Float] = []
@@ -154,6 +156,47 @@ class Mel{
     func performeFFt(){
         for i in 0...NumColumns{
             matrix[i] = fft(matrix[i])
+        }
+    }
+    
+    func fillMatrix(file: String) {
+        var lineArr: [String]
+        var columnNumber: Int = 0
+        var lineNumber: Int = 0
+        var fileArr: [String] = file.componentsSeparatedByString(".")
+        var fileName: String = fileArr[0]
+        var fileExtension: String = fileArr[1]
+        var inputArr = Array(count:26, repeatedValue:Array(count:64, repeatedValue:Float()))
+        // Encontrar el archivo
+        if let path = NSBundle.mainBundle().pathForResource(fileName, ofType:fileExtension) {
+            // use path
+            if let aStreamReader = StreamReader(path: path) {
+                defer {
+                    aStreamReader.close()
+                }
+                //Mientras que queda linea
+                while let line = aStreamReader.nextLine() {
+                    lineArr  = line.componentsSeparatedByString(" ")
+                    //matrixFilter[columnNumber] = lineArr
+                    lineNumber = 0
+                    //Otra solucion
+                    for  number in lineArr {
+                        //matrixFilter[columnNumber][lineNumber] = (number as NSString).floatValue
+                        inputArr[columnNumber][lineNumber] = (number as NSString).floatValue
+                        lineNumber += 1
+                    }
+                    columnNumber += 1
+                }
+                switch fileName{
+                case "pasos":
+                    matrixPasos = inputArr
+                case "filter":
+                    matrixFilter = inputArr
+                default:
+                    break;
+                }
+                
+            }
         }
     }
     

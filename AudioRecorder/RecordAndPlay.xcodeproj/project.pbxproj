@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E1A8C3A1D26CB3600A04C99 /* StreamReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1A8C391D26CB3600A04C99 /* StreamReader.swift */; };
+		0E1A8C3D1D26CB9500A04C99 /* filter.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0E1A8C3C1D26CB9500A04C99 /* filter.txt */; };
 		68F5DE181CCF40630084BC0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F5DE171CCF40630084BC0F /* AppDelegate.swift */; };
 		68F5DE1A1CCF40630084BC0F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F5DE191CCF40630084BC0F /* ViewController.swift */; };
 		68F5DE1D1CCF40630084BC0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68F5DE1B1CCF40630084BC0F /* Main.storyboard */; };
@@ -30,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E1A8C391D26CB3600A04C99 /* StreamReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamReader.swift; sourceTree = "<group>"; };
+		0E1A8C3C1D26CB9500A04C99 /* filter.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = filter.txt; sourceTree = "<group>"; };
 		68F5DE141CCF40630084BC0F /* RecordAndPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecordAndPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68F5DE171CCF40630084BC0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68F5DE191CCF40630084BC0F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +70,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E1A8C3B1D26CB8300A04C99 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				0E1A8C3C1D26CB9500A04C99 /* filter.txt */,
+			);
+			name = Files;
+			sourceTree = "<group>";
+		};
 		68F5DE0B1CCF40630084BC0F = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +101,7 @@
 		68F5DE161CCF40630084BC0F /* RecordAndPlay */ = {
 			isa = PBXGroup;
 			children = (
+				0E1A8C3B1D26CB8300A04C99 /* Files */,
 				6E8EB58E1D13575400CC8361 /* Clases */,
 				68F5DE171CCF40630084BC0F /* AppDelegate.swift */,
 				68F5DE191CCF40630084BC0F /* ViewController.swift */,
@@ -114,6 +127,7 @@
 			children = (
 				6E8EB58F1D13577300CC8361 /* Contador.swift */,
 				6E35E3BA1D18E52A0031271F /* Mel.swift */,
+				0E1A8C391D26CB3600A04C99 /* StreamReader.swift */,
 			);
 			name = Clases;
 			sourceTree = "<group>";
@@ -202,6 +216,7 @@
 			files = (
 				68F5DE221CCF40630084BC0F /* LaunchScreen.storyboard in Resources */,
 				68F5DE1F1CCF40630084BC0F /* Assets.xcassets in Resources */,
+				0E1A8C3D1D26CB9500A04C99 /* filter.txt in Resources */,
 				68F5DE1D1CCF40630084BC0F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E1A8C3A1D26CB3600A04C99 /* StreamReader.swift in Sources */,
 				68F5DE1A1CCF40630084BC0F /* ViewController.swift in Sources */,
 				6E8EB5901D13577300CC8361 /* Contador.swift in Sources */,
 				6E35E3BB1D18E52A0031271F /* Mel.swift in Sources */,

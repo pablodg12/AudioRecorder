@@ -27,7 +27,6 @@ class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayer
     var value = "1"
     var variable : [Float] = []
     
-    
     @IBAction func indexChanged(sender: UISegmentedControl) {
         switch btnWord.selectedSegmentIndex
         {
@@ -57,6 +56,7 @@ class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayer
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mel.fillMatrix("filter.txt")
         self.btnPlay.enabled = false
         self.counter.delegate = self;
         self.textLabel.delegate = self;
