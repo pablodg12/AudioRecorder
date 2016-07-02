@@ -58,7 +58,7 @@ class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayer
     override func viewDidLoad() {
         super.viewDidLoad()
         mel.fillMatrix("filter.txt",col: 64,row: 26)
-        mel.fillMatrix("weigtha.txt",col: 27,row: 101)
+        mel.fillMatrix("weigtha.txt",col: 14,row: 101)
         mel.fillMatrix("weigthb.txt",col: 4,row: 101)
         self.btnPlay.enabled = false
         self.counter.delegate = self;
@@ -121,12 +121,14 @@ class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayer
             self.audioPlayer.delegate = self
             self.audioPlayer.play()
             variable = loadAudioSignal(audioRecorder.url).signal
+            variable = mel.ft(variable)
             mel.setSignal(variable)
             mel.overlapping()
             mel.PreFourier()
             mel.performeFFt()
             mel.suma()
             mel.vecMatrixMult(mel.matrixFilter, tempVec: mel.result)
+            mel.inverseDCT()
             Basura.text = String(variable.maxElement())
         }
     }

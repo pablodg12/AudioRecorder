@@ -8,14 +8,17 @@
 
 import Foundation
 import Accelerate
+import Darwin
 
 
 class Mel{
+    let pi = Float(M_PI)
     var matrix = Array<Array<Float>>()
     var energy = Array(count:4410, repeatedValue:Array(count:64, repeatedValue:Float()))
     var matrixFilter = Array(count:26, repeatedValue:Array(count:64, repeatedValue:Float()))
-    var matrixA = Array(count:101, repeatedValue:Array(count:27, repeatedValue:Float()))
+    var matrixA = Array(count:101, repeatedValue:Array(count:14, repeatedValue:Float()))
     var matrixB = Array(count:101, repeatedValue:Array(count:4, repeatedValue:Float()))
+    var target:[Float] = []
     var signal : [Float] = []
     var mean : [Float] = []
     var desviation: [Float] = []
@@ -243,8 +246,6 @@ class Mel{
         return sumArr
     }
     
-    
-    
     func suma(){
         for k in 0...(64-1){
             var suma:Float = 0.0
@@ -259,7 +260,37 @@ class Mel{
         return log(val)/log(10.0)
     }
     
+    func ft(a: [Float])->[Float]{
+        var arr2:[Float] = []
+        arr2.append(0.0)
+        for i in 0...(a.count-2){
+            arr2.append(a[i])
+        }
+        var r:[Float] = []
+        for i in 0...(a.count-1){
+            var c:Float = 0.0
+            c = a[i]-arr2[i]
+            r.append(c)
+        }
+        return r
+    }
     
+    func inverseDCT(){
+        var result: Float = 0.0
+        
+        for i in 0...25{
+            result = cosa[0]/2
+            for k in 1...25{
+                result = result + cosa[k]*cosf((pi/12)*Float(k)*(Float(i)+1/2))
+            }
+            target.append(result)
+            result = 0.0
+        }
+        
+    }
     
+
+    
+
     
 }
