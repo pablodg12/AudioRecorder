@@ -289,7 +289,37 @@ class Mel{
         
     }
     
-
+    func final() {
+        //Creo un nuevo arreglo con los primeros 13 elementos de target y un 1 al final
+        var array:[Float] = []
+        for i in 0...12{
+            array.append(target[i])
+        }
+        array.append(Float(1))
+        //Pasamos la matrixA a un arreglo
+        var MA:[Float]=[]
+        for i in matrixA{
+            for j in i{
+                MA.append(j)
+            }
+        }
+        //Pasamos la matrixB a un arreglo
+        var MB:[Float]=[]
+        for i in matrixB{
+            for j in i{
+                MB.append(j)
+            }
+        }
+        //Realizo el producto cruz entre el arreglo creado y la matrixA
+        var resultado = [Float](count : 101, repeatedValue : 0.0)
+        vDSP_mmul(MA, 1, array, 1, &resultado, 1, 101, 1, 14)
+        //Transponemos la matrixB
+        var mbt = [Float](count : MB.count, repeatedValue : 0.0)
+        vDSP_mtrans(MB, 1, &mbt, 1, 4, 101)
+        //Realizo el producto cruz entre el arreglo resultado y la matrixB traspuesta
+        var resultado2 = [Float](count : 101, repeatedValue : 0.0)
+        vDSP_mmul(resultado, 1, mbt, 1, &resultado2, 1, 1, 4, 101)
+    }
     
 
     
