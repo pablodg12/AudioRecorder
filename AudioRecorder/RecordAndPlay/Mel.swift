@@ -317,7 +317,7 @@ class Mel{
         var mbt = [Float](count : MB.count, repeatedValue : 0.0)
         vDSP_mtrans(MB, 1, &mbt, 1, 4, 101)
         //Realizo el producto cruz entre el arreglo resultado y la matrixB traspuesta
-        var resultado2 = [Float](count : 101, repeatedValue : 0.0)
+        var resultado2 = [Float](count : 4, repeatedValue : 0.0)
         vDSP_mmul(resultado, 1, mbt, 1, &resultado2, 1, 1, 4, 101)
     }
     

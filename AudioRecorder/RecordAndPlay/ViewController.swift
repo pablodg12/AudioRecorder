@@ -130,6 +130,7 @@ class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayer
             mel.vecMatrixMult(mel.matrixFilter, tempVec: mel.result)
             mel.inverseDCT()
             Basura.text = String(variable.maxElement())
+            mel.final()
         }
     }
     
