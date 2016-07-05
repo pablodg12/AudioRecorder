@@ -13,6 +13,7 @@ import AVFoundation
 class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayerDelegate, UITextFieldDelegate {
     
     
+    @IBOutlet weak var holiwi: UILabel!
     @IBOutlet weak var Basura: UILabel!
     @IBOutlet weak var counter: UITextField!
     @IBOutlet weak var textLabel: UITextField!
@@ -57,9 +58,9 @@ class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayer
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mel.fillMatrix("filter.txt",col: 64,row: 26)
-        mel.fillMatrix("weigtha.txt",col: 14,row: 101)
-        mel.fillMatrix("weigthb.txt",col: 4,row: 101)
+        mel.fillMatrix("filter.txt",col: 128,row: 26)
+        mel.fillMatrix("weigtha.txt",col: 14,row: 61)
+        mel.fillMatrix("weigthb.txt",col: 4,row: 61)
         self.btnPlay.enabled = false
         self.counter.delegate = self;
         self.textLabel.delegate = self;
@@ -122,15 +123,22 @@ class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayer
             self.audioPlayer.play()
             variable = loadAudioSignal(audioRecorder.url).signal
             variable = mel.ft(variable)
+            
             mel.setSignal(variable)
+            
             mel.overlapping()
+            
             mel.PreFourier()
             mel.performeFFt()
             mel.suma()
+            
             mel.vecMatrixMult(mel.matrixFilter, tempVec: mel.result)
             mel.inverseDCT()
-            Basura.text = String(variable.maxElement())
-            mel.final()
+            
+            mel.standarization()
+            
+            
+            Basura.text = String(mel.final()[0])
         }
     }
     
@@ -170,6 +178,10 @@ class ViewController: UIViewController , AVAudioRecorderDelegate , AVAudioPlayer
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func recordAudio(sender: UIButton) {
+        holiwi.text = String("holiwi")
     }
 
 

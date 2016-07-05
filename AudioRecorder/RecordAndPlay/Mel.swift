@@ -3,7 +3,6 @@
 //  RecordAndPlay
 //
 //  Created by Pablo on 6/20/16.
-//  Copyright © 2016 Nimble Chapps. All rights reserved.
 //
 
 import Foundation
@@ -14,24 +13,24 @@ import Darwin
 class Mel{
     let pi = Float(M_PI)
     var matrix = Array<Array<Float>>()
-    var energy = Array(count:4410, repeatedValue:Array(count:64, repeatedValue:Float()))
-    var matrixFilter = Array(count:26, repeatedValue:Array(count:64, repeatedValue:Float()))
-    var matrixA = Array(count:101, repeatedValue:Array(count:14, repeatedValue:Float()))
-    var matrixB = Array(count:101, repeatedValue:Array(count:4, repeatedValue:Float()))
+    var energy = Array(count:1850, repeatedValue:Array(count:256, repeatedValue:Float()))
+    var matrixFilter = Array(count:26, repeatedValue:Array(count:128, repeatedValue:Float()))
+    var matrixA = Array(count:61, repeatedValue:Array(count:14, repeatedValue:Float()))
+    var matrixB = Array(count:61, repeatedValue:Array(count:4, repeatedValue:Float()))
     var target:[Float] = []
     var signal : [Float] = []
-    var mean : [Float] = []
-    var desviation: [Float] = []
+    var mean : [Float] = [ 14.8240505 ,-5.3120379 , 2.6904939 ,-2.4391569,  0.6064820, -1.1383287,  0.4069109 ,-0.6083701 ,-1.7883503 , 4.7825634, 7.0456514 ,-2.4444793 , 2.1157496]
+    var desviation: [Float] = [9.4939708, 3.2552495, 2.0275592 ,1.3791479 ,1.1174973, 0.8679833 ,0.7787189, 0.8352188, 0.6883832 ,1.1566716, 1.5348829,0.9575440 ,0.9811263]
     var mirror : [Float] = []
-    var dummy : [Float] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    var dummy = Array(count:99,repeatedValue:Float(0))
     var sample : Int = 0
     var rate: Int = 88200
     var samRate: Int = 0
     var sizeR: Int = 0
     var iteration: Int = 0
     var NumColumns: Int = 0
-    let fft_weights: FFTSetup = vDSP_create_fftsetup(vDSP_Length(log2(Float(128))), FFTRadix(kFFTRadix2))
-    var result = Array(count:64,repeatedValue:Float(0))
+    let fft_weights: FFTSetup = vDSP_create_fftsetup(vDSP_Length(log2(Float(256))), FFTRadix(kFFTRadix2))
+    var result = Array(count:256,repeatedValue:Float(0))
     var cosa = Array(count: 26, repeatedValue:Float())
     
 
@@ -72,13 +71,15 @@ class Mel{
             mirror[k] = array1[k] - escalar
         }
     }
+    
     func eDivision(array1:[Float], escalar: Float)-> [Float]{// Division vector-escalar
         var aux: [Float] = []
-        for k in 0...127{
+        for k in 0...255{
             aux.append(array1[k] / escalar)
         }
         return aux
     }
+    
     func length(){ // Tamaño de la señal
         for _ in signal{
             self.sample = self.sample + 1
@@ -87,27 +88,15 @@ class Mel{
     
 // Set de arrays
     func setSignal(array1: [Float]){
+        self.matrix = Array<Array<Float>>()
+        self.target = []
         self.sample = 0
         self.samRate = 0
         self.sizeR = 0
         self.iteration = 0
         self.NumColumns = 0
-        signal = array1
+        signal = array1 + Array(count:101040,repeatedValue:Float(0))
         length()
-    }
-    func setMean(array1: [Float]){
-        mean = array1
-    }
-    func setDesviation(array1: [Float]){
-        desviation = array1
-    }
-// Funciones necesarias para el manejo del audio
-    
-    func standardization(mean: [Float], desviation:[Float]){
-        vMinus(signal, array2: mean)
-        vDivision(mirror,array2: desviation)
-        signal = mirror
-        mirror = []
     }
     
 // Funcion que corta la onda en frames, usando 50% de overlapping.
@@ -115,10 +104,10 @@ class Mel{
         samRate = (sample/rate)*1000
         sizeR = samRate/20
         iteration = sample/sizeR - 1
-        NumColumns = (3/2)*sample/sizeR
+        NumColumns = (3/2)*(sample/sizeR)
         
         for _ in 0...NumColumns {
-                matrix.append(Array(count:sizeR, repeatedValue:Float()))
+                matrix.append(Array(count:157, repeatedValue:Float()))
         }
         
         matrix[0][0...(sizeR-1)] = signal[0...(sizeR-1)]
@@ -164,7 +153,7 @@ class Mel{
     
     func performeFFt(){
         for i in 0...NumColumns{
-            energy[i][0...63] = eDivision(fft(matrix[i]),escalar: 128.0)[0...63]
+            energy[i] = fft(matrix[i])
         }
     }
     
@@ -247,13 +236,14 @@ class Mel{
     }
     
     func suma(){
-        for k in 0...(64-1){
+        for k in 0...(256-1){
             var suma:Float = 0.0
-            for m in 0...(4410-1){
-                suma = suma + energy[m][k]
+            for m in 0...(1850-1){
+                suma = suma + energy[m][k]/256
             }
             result[k] = suma
         }
+        
     }
     
     func log10(val: Float) -> Float {
@@ -266,14 +256,18 @@ class Mel{
         for i in 0...(a.count-2){
             arr2.append(a[i])
         }
+        var arr3 = Array(count:176400,repeatedValue:Float(0))
+        vDSP_conv(arr2,1,[0.95],1,&arr3,1,176400,1)
         var r:[Float] = []
         for i in 0...(a.count-1){
             var c:Float = 0.0
-            c = a[i]-arr2[i]
+            c = a[i]-arr3[(176399-i)]
             r.append(c)
         }
+        
         return r
     }
+
     
     func inverseDCT(){
         var result: Float = 0.0
@@ -286,10 +280,15 @@ class Mel{
             target.append(result)
             result = 0.0
         }
-        
     }
     
-    func final() {
+    func standarization(){
+        for k in 0...12{
+            target[k] = (target[k] - mean[k])/desviation[k]
+        }
+    }
+    
+    func final() -> [Float] {
         //Creo un nuevo arreglo con los primeros 13 elementos de target y un 1 al final
         var array:[Float] = []
         for i in 0...12{
@@ -310,17 +309,21 @@ class Mel{
                 MB.append(j)
             }
         }
-        //Realizo el producto cruz entre el arreglo creado y la matrixA
-        var resultado = [Float](count : 101, repeatedValue : 0.0)
-        vDSP_mmul(MA, 1, array, 1, &resultado, 1, 101, 1, 14)
+        
         //Transponemos la matrixB
-        var mbt = [Float](count : MB.count, repeatedValue : 0.0)
-        vDSP_mtrans(MB, 1, &mbt, 1, 4, 101)
+        var mbt = [Float](count : MA.count, repeatedValue : 0.0)
+        vDSP_mtrans(MA, 1, &mbt, 1, 61, 14)
+        //Realizo el producto cruz entre el arreglo creado y la matrixA
+        var resultado = [Float](count : 61, repeatedValue : 0.0)
+        vDSP_mmul(array, 1, mbt, 1, &resultado, 1, 1, 61, 14)
+        for k in 0...60{
+            resultado[k] = 1/(1+exp(-resultado[k]))
+        }
+
         //Realizo el producto cruz entre el arreglo resultado y la matrixB traspuesta
         var resultado2 = [Float](count : 4, repeatedValue : 0.0)
-        vDSP_mmul(resultado, 1, mbt, 1, &resultado2, 1, 1, 4, 101)
-    }
-    
+        vDSP_mmul(resultado, 1, MB, 1, &resultado2, 1, 1, 4, 61)
 
-    
+        return resultado2
+    }
 }
